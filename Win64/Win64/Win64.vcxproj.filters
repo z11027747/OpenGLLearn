@@ -21,5 +21,11 @@
     <ClCompile Include="..\3rd\src\glad.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="_1_CreateWindow.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="_2_CreateTriangle.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

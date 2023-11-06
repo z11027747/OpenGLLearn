@@ -1,16 +1,16 @@
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-
 #include <iostream>
 
-using namespace std;
+//#include "_1_CreateWindow.cpp"
+#include "_2_CreateTriangle.cpp"
 
+using namespace std;
 
 int main()
 {
 	cout << "Main Entry" << endl;
 
-
+	//_1_CreateWindow();
+	_2_CreateTriangle();
 
 	return 0;
 }

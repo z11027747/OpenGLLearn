@@ -1,2 +1,7 @@
-﻿  main.cpp
+﻿  glad.c
+  main.cpp
+  _1_CreateWindow.cpp
+  _2_CreateTriangle.cpp
+  正在生成代码...
+LINK : warning LNK4098: 默认库“MSVCRT”与其他库的使用冲突；请使用 /NODEFAULTLIB:library
   Win64.vcxproj -> D:\G\OpenGLLearn\Win64\x64\Debug\Win64.exe
