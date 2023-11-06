@@ -11,7 +11,7 @@ static void processInput(GLFWwindow* window);
 
 static void _2_CreateTriangle()
 {
-	cout << "Create Window" << endl;
+	cout << "Create Triangle" << endl;
 
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);

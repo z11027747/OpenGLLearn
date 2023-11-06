@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClCompile Include="..\3rd\src\glad.c" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="_3_CreateRectangle.cpp" />
     <ClCompile Include="_1_CreateWindow.cpp" />
     <ClCompile Include="_2_CreateTriangle.cpp" />
   </ItemGroup>
