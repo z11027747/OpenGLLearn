@@ -1,5 +1,4 @@
-
-#include <glad/glad.h>
+ï»¿#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
 
@@ -34,71 +33,71 @@ static void _2_CreateTriangle()
 		return;
 	}
 
-	// ========================= ¹¹½¨ºÍ±àÒëShader³ÌÐò
+	// ========================= æž„å»ºå’Œç¼–è¯‘Shaderç¨‹åº
 
-	//1.¶¥µã×ÅÉ«Æ÷´¦ÀíÊý¾Ý
+	//1.é¡¶ç‚¹ç€è‰²å™¨å¤„ç†æ•°æ®
 	//GLSL(OpenGL Shading Language)
 
-	//¶¥µã×ÅÉ«Æ÷´úÂë
+	//é¡¶ç‚¹ç€è‰²å™¨ä»£ç 
 	const char* vertexShaderSource =
-		//°æ±¾ÉùÃ÷£¬¶ÔÓ¦3.3
+		//ç‰ˆæœ¬å£°æ˜Žï¼Œå¯¹åº”3.3
 		"#version 330 core\n"
-		//layout (location = 0) Éè¶¨ÁËÊäÈë±äÁ¿µÄÎ»ÖÃÖµ
-		//in¹Ø¼ü×Ö£¬ÔÚ¶¥µã×ÅÉ«Æ÷ÖÐÉùÃ÷ËùÓÐµÄÊäÈë¶¥µãÊôÐÔ£¬ÕâÀïÐèÒª¶¥µãÎ»ÖÃ
+		//layout (location = 0) è®¾å®šäº†è¾“å…¥å˜é‡çš„ä½ç½®å€¼
+		//inå…³é”®å­—ï¼Œåœ¨é¡¶ç‚¹ç€è‰²å™¨ä¸­å£°æ˜Žæ‰€æœ‰çš„è¾“å…¥é¡¶ç‚¹å±žæ€§ï¼Œè¿™é‡Œéœ€è¦é¡¶ç‚¹ä½ç½®
 		"layout (location = 0) in vec3 aPos;\n"
-		//mainº¯Êý£¬¸úcÓïÒôºÜÏñ
+		//mainå‡½æ•°ï¼Œè·Ÿcè¯­éŸ³å¾ˆåƒ
 		"void main()\n"
 		"{\n"
-		//gl_Position±äÁ¿ÊÇÖÃÊý¾ÝµÄÔ¤¶¨ÒåµÄ±äÁ¿£¬×îºóÐèÒª¸øÕâ¸ö¸³Öµ
-		//¶¥µã¾ÍÖ±½Ó¶¨ÒåÔÚNDC¿Õ¼äÁË£¬ËùÒÔÖ±½Ó¸³Öµ¼´¿É
+		//gl_Positionå˜é‡æ˜¯ç½®æ•°æ®çš„é¢„å®šä¹‰çš„å˜é‡ï¼Œæœ€åŽéœ€è¦ç»™è¿™ä¸ªèµ‹å€¼
+		//é¡¶ç‚¹å°±ç›´æŽ¥å®šä¹‰åœ¨NDCç©ºé—´äº†ï¼Œæ‰€ä»¥ç›´æŽ¥èµ‹å€¼å³å¯
 		"   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0f);\n"
 		"}\0";
 
-	//ÎªÁËÄÜ¹»ÈÃOpenGLÊ¹ÓÃËü£¬ÎÒÃÇ±ØÐëÔÚÔËÐÐÊ±¶¯Ì¬±àÒë¶¥µã×ÅÉ«Æ÷µÄÔ´´úÂë
+	//ä¸ºäº†èƒ½å¤Ÿè®©OpenGLä½¿ç”¨å®ƒï¼Œæˆ‘ä»¬å¿…é¡»åœ¨è¿è¡Œæ—¶åŠ¨æ€ç¼–è¯‘é¡¶ç‚¹ç€è‰²å™¨çš„æºä»£ç 
 
-	//´´½¨Ò»¸ö×ÅÉ«Æ÷¶ÔÏó£¬IDÓÃÀ´ÒýÓÃ
+	//åˆ›å»ºä¸€ä¸ªç€è‰²å™¨å¯¹è±¡ï¼ŒIDç”¨æ¥å¼•ç”¨
 	unsigned int vertexShader;
-	//Ê¹ÓÃglCreateShader´´½¨Õâ¸ö×ÅÉ«Æ÷£¬·µ»ØID
-	//	GL_VERTEX_SHADER´ú±í¶¥µã×ÅÉ«Æ÷
+	//ä½¿ç”¨glCreateShaderåˆ›å»ºè¿™ä¸ªç€è‰²å™¨ï¼Œè¿”å›žID
+	//	GL_VERTEX_SHADERä»£è¡¨é¡¶ç‚¹ç€è‰²å™¨
 	vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	//Õâ¸ö×ÅÉ«Æ÷Ô´Âë¸½¼Óµ½×ÅÉ«Æ÷¶ÔÏóÉÏ
-	//	²ÎÊý1£º×ÅÉ«Æ÷¶ÔÏóÒýÓÃ
-	//	²ÎÊý2£º´«µÝ×Ö·û´®µÄÊýÁ¿
-	//	²ÎÊý3£º×ÅÉ«Æ÷Ô´Âë
+	//è¿™ä¸ªç€è‰²å™¨æºç é™„åŠ åˆ°ç€è‰²å™¨å¯¹è±¡ä¸Š
+	//	å‚æ•°1ï¼šç€è‰²å™¨å¯¹è±¡å¼•ç”¨
+	//	å‚æ•°2ï¼šä¼ é€’å­—ç¬¦ä¸²çš„æ•°é‡
+	//	å‚æ•°3ï¼šç€è‰²å™¨æºç 
 	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-	//±àÒëShader
+	//ç¼–è¯‘Shader
 	glCompileShader(vertexShader);
 
-	//ÐèÒª¼ì²â±àÒëÊÇ·ñ³É¹¦£¬²¢ÇÒ´íÎóÊÇÊ²Ã´£¬²Å¿ÉÒÔÐÞ¸´
+	//éœ€è¦æ£€æµ‹ç¼–è¯‘æ˜¯å¦æˆåŠŸï¼Œå¹¶ä¸”é”™è¯¯æ˜¯ä»€ä¹ˆï¼Œæ‰å¯ä»¥ä¿®å¤
 
-	int  success; //ÊÇ·ñ³É¹¦
-	char infoLog[512]; //´íÎóÐÅÏ¢ÈÝÆ÷
+	int  success; //æ˜¯å¦æˆåŠŸ
+	char infoLog[512]; //é”™è¯¯ä¿¡æ¯å®¹å™¨
 
-	//Í¨¹ýglCompileShader¼ì²âÊ±ºò±àÒë³É¹¦
+	//é€šè¿‡glCompileShaderæ£€æµ‹æ—¶å€™ç¼–è¯‘æˆåŠŸ
 	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
 
 	if (!success)
 	{
-		//Í¨¹ýglGetShaderInfoLog»ñÈ¡´íÎóÐÅÏ¢½øÐÐ´òÓ¡
+		//é€šè¿‡glGetShaderInfoLogèŽ·å–é”™è¯¯ä¿¡æ¯è¿›è¡Œæ‰“å°
 		glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
 		std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
 	}
 
-	//2.Æ¬¶Î×ÅÉ«Æ÷´¦ÀíÊý¾Ý
+	//2.ç‰‡æ®µç€è‰²å™¨å¤„ç†æ•°æ®
 
-	//Æ¬¶Î×ÅÉ«Æ÷´úÂë
+	//ç‰‡æ®µç€è‰²å™¨ä»£ç 
 	const char* fragmentShaderSource =
-		//°æ±¾ÉùÃ÷£¬¶ÔÓ¦3.3
+		//ç‰ˆæœ¬å£°æ˜Žï¼Œå¯¹åº”3.3
 		"#version 330 core\n"
-		//ÓÃout¹Ø¼ü×Ö£¬ÉùÃ÷×îÖÕµÄÊä³öÑÕÉ« FragColor
+		//ç”¨outå…³é”®å­—ï¼Œå£°æ˜Žæœ€ç»ˆçš„è¾“å‡ºé¢œè‰² FragColor
 		"out vec4 FragColor;\n"
 		"void main()\n"
 		"{\n"
-		//·µ»ØÑÕÉ«Öµ£¬RGBA
+		//è¿”å›žé¢œè‰²å€¼ï¼ŒRGBA
 		"   FragColor = vec4(1.0f, 0f, 0f, 1.0f);\n"
 		"}\0";
 
-	//´´½¨Æ¬¶Î×ÅÉ«Æ÷¶ÔÏó£¬ÀàÐÍÊ¹ÓÃ GL_FRAGMENT_SHADER
+	//åˆ›å»ºç‰‡æ®µç€è‰²å™¨å¯¹è±¡ï¼Œç±»åž‹ä½¿ç”¨ GL_FRAGMENT_SHADER
 	unsigned int fragmentShader;
 	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 	glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
@@ -107,142 +106,142 @@ static void _2_CreateTriangle()
 	glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
 	if (!success)
 	{
-		//Í¨¹ýglGetShaderInfoLog»ñÈ¡´íÎóÐÅÏ¢½øÐÐ´òÓ¡
+		//é€šè¿‡glGetShaderInfoLogèŽ·å–é”™è¯¯ä¿¡æ¯è¿›è¡Œæ‰“å°
 		glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
 		std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
 	}
 
-	//3.°ÑÁ½¸ö×ÅÉ«Æ÷¶ÔÏóÁ´½Óµ½Ò»¸öÓÃÀ´äÖÈ¾µÄ×ÅÉ«Æ÷³ÌÐò(Shader Program)ÖÐ
+	//3.æŠŠä¸¤ä¸ªç€è‰²å™¨å¯¹è±¡é“¾æŽ¥åˆ°ä¸€ä¸ªç”¨æ¥æ¸²æŸ“çš„ç€è‰²å™¨ç¨‹åº(Shader Program)ä¸­
 
-	//ÒªÊ¹ÓÃ±àÒëµÄ×ÅÉ«Æ÷ÎÒÃÇ±ØÐë°ÑËüÃÇÁ´½Ó(Link)ÎªÒ»¸ö×ÅÉ«Æ÷³ÌÐò¶ÔÏó£¬È»ºóÔÚäÖÈ¾¶ÔÏóµÄÊ±ºò¼¤»îÕâ¸ö×ÅÉ«Æ÷³ÌÐò
-	//ÒÑ¼¤»î×ÅÉ«Æ÷³ÌÐòµÄ×ÅÉ«Æ÷½«ÔÚÎÒÃÇ·¢ËÍäÖÈ¾µ÷ÓÃµÄÊ±ºò±»Ê¹ÓÃ
-	//µ±Á´½Ó×ÅÉ«Æ÷ÖÁÒ»¸ö³ÌÐòµÄÊ±ºò£¬Ëü»á°ÑÃ¿¸ö×ÅÉ«Æ÷µÄÊä³öÁ´½Óµ½ÏÂ¸ö×ÅÉ«Æ÷µÄÊäÈë
-	//µ±Êä³öºÍÊäÈë²»Æ¥ÅäµÄÊ±ºò£¬Äã»áµÃµ½Ò»¸öÁ¬½Ó´íÎó
+	//è¦ä½¿ç”¨ç¼–è¯‘çš„ç€è‰²å™¨æˆ‘ä»¬å¿…é¡»æŠŠå®ƒä»¬é“¾æŽ¥(Link)ä¸ºä¸€ä¸ªç€è‰²å™¨ç¨‹åºå¯¹è±¡ï¼Œç„¶åŽåœ¨æ¸²æŸ“å¯¹è±¡çš„æ—¶å€™æ¿€æ´»è¿™ä¸ªç€è‰²å™¨ç¨‹åº
+	//å·²æ¿€æ´»ç€è‰²å™¨ç¨‹åºçš„ç€è‰²å™¨å°†åœ¨æˆ‘ä»¬å‘é€æ¸²æŸ“è°ƒç”¨çš„æ—¶å€™è¢«ä½¿ç”¨
+	//å½“é“¾æŽ¥ç€è‰²å™¨è‡³ä¸€ä¸ªç¨‹åºçš„æ—¶å€™ï¼Œå®ƒä¼šæŠŠæ¯ä¸ªç€è‰²å™¨çš„è¾“å‡ºé“¾æŽ¥åˆ°ä¸‹ä¸ªç€è‰²å™¨çš„è¾“å…¥
+	//å½“è¾“å‡ºå’Œè¾“å…¥ä¸åŒ¹é…çš„æ—¶å€™ï¼Œä½ ä¼šå¾—åˆ°ä¸€ä¸ªè¿žæŽ¥é”™è¯¯
 
-	//glCreateProgramº¯Êý´´½¨Ò»¸ö³ÌÐò¶ÔÏó
+	//glCreateProgramå‡½æ•°åˆ›å»ºä¸€ä¸ªç¨‹åºå¯¹è±¡
 	unsigned int shaderProgram;
 	shaderProgram = glCreateProgram();
 
-	//°ÑÖ®Ç°±àÒëµÄ×ÅÉ«Æ÷¸½¼Óµ½³ÌÐò¶ÔÏóÉÏ
+	//æŠŠä¹‹å‰ç¼–è¯‘çš„ç€è‰²å™¨é™„åŠ åˆ°ç¨‹åºå¯¹è±¡ä¸Š
 	glAttachShader(shaderProgram, vertexShader);
 	glAttachShader(shaderProgram, fragmentShader);
 
-	//ÓÃglLinkProgramÁ´½ÓËüÃÇ
+	//ç”¨glLinkProgramé“¾æŽ¥å®ƒä»¬
 	glLinkProgram(shaderProgram);
 
-	//¼ì²âÁ´½Ó×ÅÉ«Æ÷³ÌÐòÊÇ·ñÊ§°Ü
+	//æ£€æµ‹é“¾æŽ¥ç€è‰²å™¨ç¨‹åºæ˜¯å¦å¤±è´¥
 	glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
 	if (!success) {
 		glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
 		std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
 	}
 
-	//µ÷ÓÃglUseProgramº¯Êý£¬ÓÃ¸Õ´´½¨µÄ³ÌÐò¶ÔÏó×÷ÎªËüµÄ²ÎÊý£¬ÒÔ¼¤»îÕâ¸ö³ÌÐò¶ÔÏó
-	// TODO äÖÈ¾¶ÔÏóÊ±ºòµ÷ÓÃ¼´¿É
+	//è°ƒç”¨glUseProgramå‡½æ•°ï¼Œç”¨åˆšåˆ›å»ºçš„ç¨‹åºå¯¹è±¡ä½œä¸ºå®ƒçš„å‚æ•°ï¼Œä»¥æ¿€æ´»è¿™ä¸ªç¨‹åºå¯¹è±¡
+	// TODO æ¸²æŸ“å¯¹è±¡æ—¶å€™è°ƒç”¨å³å¯
 	//glUseProgram(shaderProgram);
 
-	//¼¤»îÖ®ºóÃ¿¸ö×ÅÉ«Æ÷µ÷ÓÃºÍäÖÈ¾µ÷ÓÃ¶¼»áÊ¹ÓÃÕâ¸ö³ÌÐò¶ÔÏó£¨Ò²¾ÍÊÇÖ®Ç°Ð´µÄ×ÅÉ«Æ÷)ÁË
+	//æ¿€æ´»ä¹‹åŽæ¯ä¸ªç€è‰²å™¨è°ƒç”¨å’Œæ¸²æŸ“è°ƒç”¨éƒ½ä¼šä½¿ç”¨è¿™ä¸ªç¨‹åºå¯¹è±¡ï¼ˆä¹Ÿå°±æ˜¯ä¹‹å‰å†™çš„ç€è‰²å™¨)äº†
 
-	//×ÅÉ«Æ÷¶ÔÏóÁ´½Óµ½³ÌÐò¶ÔÏóÒÔºó£¬É¾³ý×ÅÉ«Æ÷¶ÔÏó£¬²»ÐèÒªËüÃÇÁË
+	//ç€è‰²å™¨å¯¹è±¡é“¾æŽ¥åˆ°ç¨‹åºå¯¹è±¡ä»¥åŽï¼Œåˆ é™¤ç€è‰²å™¨å¯¹è±¡ï¼Œä¸éœ€è¦å®ƒä»¬äº†
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
 
-	// ========================= ÉèÖÃ¶¥µãÊý¾Ý
+	// ========================= è®¾ç½®é¡¶ç‚¹æ•°æ®
 
-	//1.¶¨Òå¶¥µã
-	//	OpenGLÊÇÒ»¸ö3DÍ¼ÐÎ¿â£¬ËùÒÔÔÚOpenGLÖÐÎÒÃÇÖ¸¶¨µÄËùÓÐ×ø±ê¶¼ÊÇ3D×ø±ê£¨x¡¢yºÍz£©
-	//	½«Ëü¶¥µãµÄz×ø±êÉèÖÃÎª0.0£¬Éî¶È¶¼ÊÇÒ»ÑùµÄ£¬¿´ÆðÀ´ÊÇ2D
+	//1.å®šä¹‰é¡¶ç‚¹
+	//	OpenGLæ˜¯ä¸€ä¸ª3Då›¾å½¢åº“ï¼Œæ‰€ä»¥åœ¨OpenGLä¸­æˆ‘ä»¬æŒ‡å®šçš„æ‰€æœ‰åæ ‡éƒ½æ˜¯3Dåæ ‡ï¼ˆxã€yå’Œzï¼‰
+	//	å°†å®ƒé¡¶ç‚¹çš„zåæ ‡è®¾ç½®ä¸º0.0ï¼Œæ·±åº¦éƒ½æ˜¯ä¸€æ ·çš„ï¼Œçœ‹èµ·æ¥æ˜¯2D
 	float vertices[] = {
 		-0.5f, -0.5f, 0.0f,
 		 0.5f, -0.5f, 0.0f,
 		 0.0f,  0.5f, 0.0f
 	};
 
-	//2.°Ñ¶¥µãÊý¾Ý·¢ËÍ¸øÏÔ¿¨
-	//»áÔÚGPUÉÏ´´½¨ÄÚ´æÓÃÓÚ´¢´æÎÒÃÇµÄ¶¥µãÊý¾Ý£¬»¹ÒªÅäÖÃOpenGLÈçºÎ½âÊÍÕâÐ©ÄÚ´æ£¬²¢ÇÒÖ¸¶¨ÆäÈçºÎ·¢ËÍ¸øÏÔ¿¨
+	//2.æŠŠé¡¶ç‚¹æ•°æ®å‘é€ç»™æ˜¾å¡
+	//ä¼šåœ¨GPUä¸Šåˆ›å»ºå†…å­˜ç”¨äºŽå‚¨å­˜æˆ‘ä»¬çš„é¡¶ç‚¹æ•°æ®ï¼Œè¿˜è¦é…ç½®OpenGLå¦‚ä½•è§£é‡Šè¿™äº›å†…å­˜ï¼Œå¹¶ä¸”æŒ‡å®šå…¶å¦‚ä½•å‘é€ç»™æ˜¾å¡
 
-	//Í¨¹ý¶¥µã»º³å¶ÔÏó(Vertex Buffer Objects, VBO)¹ÜÀíÕâ¸öÄÚ´æ£¬Ëü»áÔÚGPUÄÚ´æ£¨Í¨³£±»³ÆÎªÏÔ´æ£©ÖÐ´¢´æ´óÁ¿¶¥µã
+	//é€šè¿‡é¡¶ç‚¹ç¼“å†²å¯¹è±¡(Vertex Buffer Objects, VBO)ç®¡ç†è¿™ä¸ªå†…å­˜ï¼Œå®ƒä¼šåœ¨GPUå†…å­˜ï¼ˆé€šå¸¸è¢«ç§°ä¸ºæ˜¾å­˜ï¼‰ä¸­å‚¨å­˜å¤§é‡é¡¶ç‚¹
 
-	//Ê¹ÓÃÕâÐ©»º³å¶ÔÏóµÄºÃ´¦ÊÇÎÒÃÇ¿ÉÒÔÒ»´ÎÐÔµÄ·¢ËÍÒ»´óÅúÊý¾Ýµ½ÏÔ¿¨ÉÏ£¬¶ø²»ÊÇÃ¿¸ö¶¥µã·¢ËÍÒ»´Î
-	//´ÓCPU°ÑÊý¾Ý·¢ËÍµ½ÏÔ¿¨Ïà¶Ô½ÏÂý£¬ËùÒÔÖ»Òª¿ÉÄÜÎÒÃÇ¶¼Òª³¢ÊÔ¾¡Á¿Ò»´ÎÐÔ·¢ËÍ¾¡¿ÉÄÜ¶àµÄÊý¾Ý
-	//µ±Êý¾Ý·¢ËÍÖÁÏÔ¿¨µÄÄÚ´æÖÐºó£¬¶¥µã×ÅÉ«Æ÷¼¸ºõÄÜÁ¢¼´·ÃÎÊ¶¥µã£¬ÕâÊÇ¸ö·Ç³£¿ìµÄ¹ý³Ì
+	//ä½¿ç”¨è¿™äº›ç¼“å†²å¯¹è±¡çš„å¥½å¤„æ˜¯æˆ‘ä»¬å¯ä»¥ä¸€æ¬¡æ€§çš„å‘é€ä¸€å¤§æ‰¹æ•°æ®åˆ°æ˜¾å¡ä¸Šï¼Œè€Œä¸æ˜¯æ¯ä¸ªé¡¶ç‚¹å‘é€ä¸€æ¬¡
+	//ä»ŽCPUæŠŠæ•°æ®å‘é€åˆ°æ˜¾å¡ç›¸å¯¹è¾ƒæ…¢ï¼Œæ‰€ä»¥åªè¦å¯èƒ½æˆ‘ä»¬éƒ½è¦å°è¯•å°½é‡ä¸€æ¬¡æ€§å‘é€å°½å¯èƒ½å¤šçš„æ•°æ®
+	//å½“æ•°æ®å‘é€è‡³æ˜¾å¡çš„å†…å­˜ä¸­åŽï¼Œé¡¶ç‚¹ç€è‰²å™¨å‡ ä¹Žèƒ½ç«‹å³è®¿é—®é¡¶ç‚¹ï¼Œè¿™æ˜¯ä¸ªéžå¸¸å¿«çš„è¿‡ç¨‹
 
-	//Ê¹ÓÃglGenBuffersº¯ÊýºÍÒ»¸ö»º³åIDÉú³ÉÒ»¸öVBO¶ÔÏó£º
+	//ä½¿ç”¨glGenBufferså‡½æ•°å’Œä¸€ä¸ªç¼“å†²IDç”Ÿæˆä¸€ä¸ªVBOå¯¹è±¡ï¼š
 	unsigned int VBO;
 	glGenBuffers(1, &VBO);
 
-	//3.Á´½Ó¶¥µãÊôÐÔ
+	//3.é“¾æŽ¥é¡¶ç‚¹å±žæ€§
 
-	//¶¥µãÊý¾Ý»º³åÇø VBO		(v1_x v1_y v1_z|v2_x v2_y v2_z|...)
-	//	Î»ÖÃÊý¾Ý±»´¢´æÎª32Î»£¨4×Ö½Ú£©¸¡µãÖµ
-	//	Ã¿¸öÎ»ÖÃ°üº¬3¸öÕâÑùµÄÖµ
-	//	ÔÚÕâ3¸öÖµÖ®¼äÃ»ÓÐ¿ÕÏ¶£¨»òÆäËûÖµ£©¡£Õâ¼¸¸öÖµÔÚÊý×éÖÐ½ôÃÜÅÅÁÐ(Tightly Packed)
-	//	Êý¾ÝÖÐµÚÒ»¸öÖµÔÚ»º³å¿ªÊ¼µÄÎ»ÖÃ
+	//é¡¶ç‚¹æ•°æ®ç¼“å†²åŒº VBO		(v1_x v1_y v1_z|v2_x v2_y v2_z|...)
+	//	ä½ç½®æ•°æ®è¢«å‚¨å­˜ä¸º32ä½ï¼ˆ4å­—èŠ‚ï¼‰æµ®ç‚¹å€¼
+	//	æ¯ä¸ªä½ç½®åŒ…å«3ä¸ªè¿™æ ·çš„å€¼
+	//	åœ¨è¿™3ä¸ªå€¼ä¹‹é—´æ²¡æœ‰ç©ºéš™ï¼ˆæˆ–å…¶ä»–å€¼ï¼‰ã€‚è¿™å‡ ä¸ªå€¼åœ¨æ•°ç»„ä¸­ç´§å¯†æŽ’åˆ—(Tightly Packed)
+	//	æ•°æ®ä¸­ç¬¬ä¸€ä¸ªå€¼åœ¨ç¼“å†²å¼€å§‹çš„ä½ç½®
 
-	//¶¥µãÊý×é¶ÔÏó(Vertex Array Object, VAO)
-	//	¿ÉÒÔÏñ¶¥µã»º³å¶ÔÏóÄÇÑù±»°ó¶¨£¬ÈÎºÎËæºóµÄ¶¥µãÊôÐÔµ÷ÓÃ¶¼»á´¢´æÔÚÕâ¸öVAOÖÐ
-	//	µ±ÅäÖÃ¶¥µãÊôÐÔÖ¸ÕëÊ±£¬ÄãÖ»ÐèÒª½«ÄÇÐ©µ÷ÓÃÖ´ÐÐÒ»´Î£¬Ö®ºóÔÙ»æÖÆÎïÌåµÄÊ±ºòÖ»ÐèÒª°ó¶¨ÏàÓ¦µÄVAO¾ÍÐÐÁË
-	//·ñÔòÃ¿¸ö¶ÔÏó¶¼ÐèÒª½øÐÐÒ»ÏµÁÐ²Ù×÷£º
-	//	1.Ê¹ÓÃÒ»¸ö¶¥µã»º³å¶ÔÏó½«¶¥µãÊý¾Ý³õÊ¼»¯ÖÁ»º³åÖÐ
-	//	2.½¨Á¢ÁËÒ»¸ö¶¥µãºÍÒ»¸öÆ¬¶Î×ÅÉ«Æ÷
-	//	3.²¢¸æËßÁËOpenGLÈçºÎ°Ñ¶¥µãÊý¾ÝÁ´½Óµ½¶¥µã×ÅÉ«Æ÷µÄ¶¥µãÊôÐÔÉÏ
-	//Èç¹û¶ÔÏó¶¥µãÊý¾Ý±È½Ï¶à£¬²¢ÇÒ¶ÔÏó±È½Ï¶à£¬Á÷³Ì¾Í±È½Ï¸´ÔÓ
-	//ËùÒÔÏ£ÍûÓÅ»¯Ò»ÏÂ£¬°ó¶¨VAO¾Í¿ÉÒÔÁË
+	//é¡¶ç‚¹æ•°ç»„å¯¹è±¡(Vertex Array Object, VAO)
+	//	å¯ä»¥åƒé¡¶ç‚¹ç¼“å†²å¯¹è±¡é‚£æ ·è¢«ç»‘å®šï¼Œä»»ä½•éšåŽçš„é¡¶ç‚¹å±žæ€§è°ƒç”¨éƒ½ä¼šå‚¨å­˜åœ¨è¿™ä¸ªVAOä¸­
+	//	å½“é…ç½®é¡¶ç‚¹å±žæ€§æŒ‡é’ˆæ—¶ï¼Œä½ åªéœ€è¦å°†é‚£äº›è°ƒç”¨æ‰§è¡Œä¸€æ¬¡ï¼Œä¹‹åŽå†ç»˜åˆ¶ç‰©ä½“çš„æ—¶å€™åªéœ€è¦ç»‘å®šç›¸åº”çš„VAOå°±è¡Œäº†
+	//å¦åˆ™æ¯ä¸ªå¯¹è±¡éƒ½éœ€è¦è¿›è¡Œä¸€ç³»åˆ—æ“ä½œï¼š
+	//	1.ä½¿ç”¨ä¸€ä¸ªé¡¶ç‚¹ç¼“å†²å¯¹è±¡å°†é¡¶ç‚¹æ•°æ®åˆå§‹åŒ–è‡³ç¼“å†²ä¸­
+	//	2.å»ºç«‹äº†ä¸€ä¸ªé¡¶ç‚¹å’Œä¸€ä¸ªç‰‡æ®µç€è‰²å™¨
+	//	3.å¹¶å‘Šè¯‰äº†OpenGLå¦‚ä½•æŠŠé¡¶ç‚¹æ•°æ®é“¾æŽ¥åˆ°é¡¶ç‚¹ç€è‰²å™¨çš„é¡¶ç‚¹å±žæ€§ä¸Š
+	//å¦‚æžœå¯¹è±¡é¡¶ç‚¹æ•°æ®æ¯”è¾ƒå¤šï¼Œå¹¶ä¸”å¯¹è±¡æ¯”è¾ƒå¤šï¼Œæµç¨‹å°±æ¯”è¾ƒå¤æ‚
+	//æ‰€ä»¥å¸Œæœ›ä¼˜åŒ–ä¸€ä¸‹ï¼Œç»‘å®šVAOå°±å¯ä»¥äº†
 
-	//VAO´æ´¢µÄÄÚÈÝ£º
-	//	1.glEnableVertexAttribArrayºÍglDisableVertexAttribArrayµÄµ÷ÓÃ
-	//	2.Í¨¹ýglVertexAttribPointerÉèÖÃµÄ¶¥µãÊôÐÔÅäÖÃ
-	//	3.Í¨¹ýglVertexAttribPointerµ÷ÓÃÓë¶¥µãÊôÐÔ¹ØÁªµÄ¶¥µã»º³å¶ÔÏó
+	//VAOå­˜å‚¨çš„å†…å®¹ï¼š
+	//	1.glEnableVertexAttribArrayå’ŒglDisableVertexAttribArrayçš„è°ƒç”¨
+	//	2.é€šè¿‡glVertexAttribPointerè®¾ç½®çš„é¡¶ç‚¹å±žæ€§é…ç½®
+	//	3.é€šè¿‡glVertexAttribPointerè°ƒç”¨ä¸Žé¡¶ç‚¹å±žæ€§å…³è”çš„é¡¶ç‚¹ç¼“å†²å¯¹è±¡
 
-	//OpenGLµÄºËÐÄÄ£Ê½ÒªÇó±ØÐëÊ¹ÓÃVAO
+	//OpenGLçš„æ ¸å¿ƒæ¨¡å¼è¦æ±‚å¿…é¡»ä½¿ç”¨VAO
 
-	//´´½¨ VAO
+	//åˆ›å»º VAO
 	unsigned int VAO;
 	glGenVertexArrays(1, &VAO);
 
-	//°ó¶¨ VAO
+	//ç»‘å®š VAO
 	glBindVertexArray(VAO);
 
-	//¶¥µã»º³å¶ÔÏóµÄ»º³åÀàÐÍÊÇGL_ARRAY_BUFFER
-	//Ê¹ÓÃglBindBufferº¯Êý°ÑÐÂ´´½¨µÄ»º³å°ó¶¨µ½GL_ARRAY_BUFFERÄ¿±êÉÏ
+	//é¡¶ç‚¹ç¼“å†²å¯¹è±¡çš„ç¼“å†²ç±»åž‹æ˜¯GL_ARRAY_BUFFER
+	//ä½¿ç”¨glBindBufferå‡½æ•°æŠŠæ–°åˆ›å»ºçš„ç¼“å†²ç»‘å®šåˆ°GL_ARRAY_BUFFERç›®æ ‡ä¸Š
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
-	//´ÓÕâÒ»¿ÌÆð£¬ÎÒÃÇÊ¹ÓÃµÄÈÎºÎ£¨ÔÚGL_ARRAY_BUFFERÄ¿±êÉÏµÄ£©»º³åµ÷ÓÃ¶¼»áÓÃÀ´ÅäÖÃµ±Ç°°ó¶¨µÄ»º³å(VBO)
-	//¿ÉÒÔµ÷ÓÃglBufferDataº¯Êý£¬Ëü»á°ÑÖ®Ç°¶¨ÒåµÄ¶¥µãÊý¾Ý¸´ÖÆµ½»º³åµÄÄÚ´æÖÐ
-	//	²ÎÊý1£ºÄ¿±ê»º³åÀàÐÍ
-	//	²ÎÊý2£ºÊý¾Ý´óÐ¡
-	//	²ÎÊý3£ºÊý¾Ý
-	//	²ÎÊý4£ºÏÔ¿¨ÈçºÎ¹ÜÀíÊý¾Ý	
-	//			GL_STATIC_DRAW £ºÊý¾Ý²»»á»ò¼¸ºõ²»»á¸Ä±ä
-	//			GL_DYNAMIC_DRAW£ºÊý¾Ý»á±»¸Ä±äºÜ¶à
-	//			GL_STREAM_DRAW £ºÊý¾ÝÃ¿´Î»æÖÆÊ±¶¼»á¸Ä±ä
-	//				±ÈÈçËµÒ»¸ö»º³åÖÐµÄÊý¾Ý½«Æµ·±±»¸Ä±ä£¬ÄÇÃ´Ê¹ÓÃµÄÀàÐÍ¾ÍÊÇGL_DYNAMIC_DRAW»òGL_STREAM_DRAW
-	//					ÕâÑù¾ÍÄÜÈ·±£ÏÔ¿¨°ÑÊý¾Ý·ÅÔÚÄÜ¹»¸ßËÙÐ´ÈëµÄÄÚ´æ²¿·Ö
+	//ä»Žè¿™ä¸€åˆ»èµ·ï¼Œæˆ‘ä»¬ä½¿ç”¨çš„ä»»ä½•ï¼ˆåœ¨GL_ARRAY_BUFFERç›®æ ‡ä¸Šçš„ï¼‰ç¼“å†²è°ƒç”¨éƒ½ä¼šç”¨æ¥é…ç½®å½“å‰ç»‘å®šçš„ç¼“å†²(VBO)
+	//å¯ä»¥è°ƒç”¨glBufferDataå‡½æ•°ï¼Œå®ƒä¼šæŠŠä¹‹å‰å®šä¹‰çš„é¡¶ç‚¹æ•°æ®å¤åˆ¶åˆ°ç¼“å†²çš„å†…å­˜ä¸­
+	//	å‚æ•°1ï¼šç›®æ ‡ç¼“å†²ç±»åž‹
+	//	å‚æ•°2ï¼šæ•°æ®å¤§å°
+	//	å‚æ•°3ï¼šæ•°æ®
+	//	å‚æ•°4ï¼šæ˜¾å¡å¦‚ä½•ç®¡ç†æ•°æ®	
+	//			GL_STATIC_DRAW ï¼šæ•°æ®ä¸ä¼šæˆ–å‡ ä¹Žä¸ä¼šæ”¹å˜
+	//			GL_DYNAMIC_DRAWï¼šæ•°æ®ä¼šè¢«æ”¹å˜å¾ˆå¤š
+	//			GL_STREAM_DRAW ï¼šæ•°æ®æ¯æ¬¡ç»˜åˆ¶æ—¶éƒ½ä¼šæ”¹å˜
+	//				æ¯”å¦‚è¯´ä¸€ä¸ªç¼“å†²ä¸­çš„æ•°æ®å°†é¢‘ç¹è¢«æ”¹å˜ï¼Œé‚£ä¹ˆä½¿ç”¨çš„ç±»åž‹å°±æ˜¯GL_DYNAMIC_DRAWæˆ–GL_STREAM_DRAW
+	//					è¿™æ ·å°±èƒ½ç¡®ä¿æ˜¾å¡æŠŠæ•°æ®æ”¾åœ¨èƒ½å¤Ÿé«˜é€Ÿå†™å…¥çš„å†…å­˜éƒ¨åˆ†
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-	//Ä¿Ç°ÎÊÌâ£º
-	//OpenGL»¹²»ÖªµÀËü¸ÃÈçºÎ½âÊÍÄÚ´æÖÐµÄ¶¥µãÊý¾Ý£¬ÒÔ¼°Ëü¸ÃÈçºÎ½«¶¥µãÊý¾ÝÁ´½Óµ½¶¥µã×ÅÉ«Æ÷µÄÊôÐÔÉÏ
+	//ç›®å‰é—®é¢˜ï¼š
+	//OpenGLè¿˜ä¸çŸ¥é“å®ƒè¯¥å¦‚ä½•è§£é‡Šå†…å­˜ä¸­çš„é¡¶ç‚¹æ•°æ®ï¼Œä»¥åŠå®ƒè¯¥å¦‚ä½•å°†é¡¶ç‚¹æ•°æ®é“¾æŽ¥åˆ°é¡¶ç‚¹ç€è‰²å™¨çš„å±žæ€§ä¸Š
 
-	//¶¥µã×ÅÉ«Æ÷ÔÊÐíÎÒÃÇÖ¸¶¨ÈÎºÎÒÔ¶¥µãÊôÐÔÎªÐÎÊ½µÄÊäÈë
-	//ÕâÊ¹Æä¾ßÓÐºÜÇ¿µÄÁé»îÐÔµÄÍ¬Ê±£¬Ëü»¹µÄÈ·ÒâÎ¶×ÅÎÒÃÇ±ØÐëÊÖ¶¯Ö¸¶¨ÊäÈëÊý¾ÝµÄÄÄÒ»¸ö²¿·Ö¶ÔÓ¦¶¥µã×ÅÉ«Æ÷µÄÄÄÒ»¸ö¶¥µãÊôÐÔ
+	//é¡¶ç‚¹ç€è‰²å™¨å…è®¸æˆ‘ä»¬æŒ‡å®šä»»ä½•ä»¥é¡¶ç‚¹å±žæ€§ä¸ºå½¢å¼çš„è¾“å…¥
+	//è¿™ä½¿å…¶å…·æœ‰å¾ˆå¼ºçš„çµæ´»æ€§çš„åŒæ—¶ï¼Œå®ƒè¿˜çš„ç¡®æ„å‘³ç€æˆ‘ä»¬å¿…é¡»æ‰‹åŠ¨æŒ‡å®šè¾“å…¥æ•°æ®çš„å“ªä¸€ä¸ªéƒ¨åˆ†å¯¹åº”é¡¶ç‚¹ç€è‰²å™¨çš„å“ªä¸€ä¸ªé¡¶ç‚¹å±žæ€§
 
-	//Ê¹ÓÃglVertexAttribPointerº¯Êý¸æËßOpenGL¸ÃÈçºÎ½âÎö¶¥µãÊý¾Ý£¨Ó¦ÓÃµ½Öð¸ö¶¥µãÊôÐÔÉÏ£©
-	//	²ÎÊý1£ºÒªÅäÖÃµÄ¶¥µãÊôÐÔ				¶ÔÓ¦=>layout(location = 0)
-	//	²ÎÊý2£º¶¥µãÊôÐÔ´óÐ¡					vec3ÊÇÈý¸öÖµ£¬ËùÒÔÊÇ3
-	//	²ÎÊý3£ºÖ¸¶¨Êý¾ÝÀàÐÍ					GL_FLOAT(GLSLÖÐvec*¶¼ÊÇÓÉ¸¡µãÊýÖµ×é³ÉµÄ)
-	//	²ÎÊý4£ºÊý¾ÝÊÇ·ñ±ê×¼»¯				Èç¹ûÊÇTrue£¬ËùÓÐÊý¾Ý¶¼»á±»Ó³Éäµ½0£¨¶ÔÓÚÓÐ·ûºÅÐÍsignedÊý¾ÝÊÇ-1£©µ½1Ö®¼ä
-	//	²ÎÊý5£ºÁ¬ÐøµÄ¶¥µãÊôÐÔ×éÖ®¼äµÄ¼ä¸ô	ÓÉÓÚÏÂ¸ö×éÎ»ÖÃÊý¾ÝÔÚ3¸öfloatÖ®ºó£¬ÎÒÃÇ°Ñ²½³¤ÉèÖÃÎª3 * sizeof(float)
-	//	²ÎÊý6£ºÆ«ÒÆÁ¿(Offset)
+	//ä½¿ç”¨glVertexAttribPointerå‡½æ•°å‘Šè¯‰OpenGLè¯¥å¦‚ä½•è§£æžé¡¶ç‚¹æ•°æ®ï¼ˆåº”ç”¨åˆ°é€ä¸ªé¡¶ç‚¹å±žæ€§ä¸Šï¼‰
+	//	å‚æ•°1ï¼šè¦é…ç½®çš„é¡¶ç‚¹å±žæ€§				å¯¹åº”=>layout(location = 0)
+	//	å‚æ•°2ï¼šé¡¶ç‚¹å±žæ€§å¤§å°					vec3æ˜¯ä¸‰ä¸ªå€¼ï¼Œæ‰€ä»¥æ˜¯3
+	//	å‚æ•°3ï¼šæŒ‡å®šæ•°æ®ç±»åž‹					GL_FLOAT(GLSLä¸­vec*éƒ½æ˜¯ç”±æµ®ç‚¹æ•°å€¼ç»„æˆçš„)
+	//	å‚æ•°4ï¼šæ•°æ®æ˜¯å¦æ ‡å‡†åŒ–				å¦‚æžœæ˜¯Trueï¼Œæ‰€æœ‰æ•°æ®éƒ½ä¼šè¢«æ˜ å°„åˆ°0ï¼ˆå¯¹äºŽæœ‰ç¬¦å·åž‹signedæ•°æ®æ˜¯-1ï¼‰åˆ°1ä¹‹é—´
+	//	å‚æ•°5ï¼šè¿žç»­çš„é¡¶ç‚¹å±žæ€§ç»„ä¹‹é—´çš„é—´éš”	ç”±äºŽä¸‹ä¸ªç»„ä½ç½®æ•°æ®åœ¨3ä¸ªfloatä¹‹åŽï¼Œæˆ‘ä»¬æŠŠæ­¥é•¿è®¾ç½®ä¸º3 * sizeof(float)
+	//	å‚æ•°6ï¼šåç§»é‡(Offset)
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 
-	//ÒÔ¶¥µãÊôÐÔÎ»ÖÃÖµ×÷Îª²ÎÊý£¬ÆôÓÃ¶¥µãÊôÐÔ
+	//ä»¥é¡¶ç‚¹å±žæ€§ä½ç½®å€¼ä½œä¸ºå‚æ•°ï¼Œå¯ç”¨é¡¶ç‚¹å±žæ€§
 	glEnableVertexAttribArray(0);
 
-	//½â³ý°ó¶¨ VBO
-	//¶ÔglVertexAttribPointerµÄµ÷ÓÃ½«VBO×¢²áÎª¶¥µãÊôÐÔµÄ°ó¶¨¶¥µã»º³åÇø¶ÔÏó£¬ÕâÑùÖ®ºó¾Í¿ÉÒÔ°²È«µØ½â³ý°ó¶¨
+	//è§£é™¤ç»‘å®š VBO
+	//å¯¹glVertexAttribPointerçš„è°ƒç”¨å°†VBOæ³¨å†Œä¸ºé¡¶ç‚¹å±žæ€§çš„ç»‘å®šé¡¶ç‚¹ç¼“å†²åŒºå¯¹è±¡ï¼Œè¿™æ ·ä¹‹åŽå°±å¯ä»¥å®‰å…¨åœ°è§£é™¤ç»‘å®š
 	glBindBuffer(GL_ARRAY_BUFFER, NULL);
 
-	//»æÖÆÍêÎïÌåºó£¬ÔÙ½â°óVAO
+	//ç»˜åˆ¶å®Œç‰©ä½“åŽï¼Œå†è§£ç»‘VAO
 	glBindVertexArray(NULL);
 
 	while (!glfwWindowShouldClose(window))
@@ -252,15 +251,15 @@ static void _2_CreateTriangle()
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		//äÖÈ¾Ò»¸öÎïÌåÊ±ÒªÊ¹ÓÃ×ÅÉ«Æ÷³ÌÐò
+		//æ¸²æŸ“ä¸€ä¸ªç‰©ä½“æ—¶è¦ä½¿ç”¨ç€è‰²å™¨ç¨‹åº
 		glUseProgram(shaderProgram);
-		//´òËã»æÖÆÎïÌåµÄÊ±ºò¾ÍÄÃ³öÏàÓ¦µÄVAO£¬°ó¶¨Ëü
+		//æ‰“ç®—ç»˜åˆ¶ç‰©ä½“çš„æ—¶å€™å°±æ‹¿å‡ºç›¸åº”çš„VAOï¼Œç»‘å®šå®ƒ
 		glBindVertexArray(VAO);
 
-		//glDrawArraysº¯ÊýµÚÒ»¸ö²ÎÊýÊÇÎÒÃÇ´òËã»æÖÆµÄOpenGLÍ¼ÔªµÄÀàÐÍ
-		//	²ÎÊý1£ºGL_TRIANGLES ÊÇ»æÖÆÈý½ÇÐÎ
-		//	²ÎÊý2£ºÖ¸¶¨ÁË¶¥µãÊý×éµÄÆðÊ¼Ë÷Òý£¬ÕâÀïÊÇ0
-		//	²ÎÊý3£º×î´òËã»æÖÆ¶àÉÙ¸ö¶¥µã£¬ÕâÀïÊÇ3
+		//glDrawArrayså‡½æ•°ç¬¬ä¸€ä¸ªå‚æ•°æ˜¯æˆ‘ä»¬æ‰“ç®—ç»˜åˆ¶çš„OpenGLå›¾å…ƒçš„ç±»åž‹
+		//	å‚æ•°1ï¼šGL_TRIANGLES æ˜¯ç»˜åˆ¶ä¸‰è§’å½¢
+		//	å‚æ•°2ï¼šæŒ‡å®šäº†é¡¶ç‚¹æ•°ç»„çš„èµ·å§‹ç´¢å¼•ï¼Œè¿™é‡Œæ˜¯0
+		//	å‚æ•°3ï¼šæœ€æ‰“ç®—ç»˜åˆ¶å¤šå°‘ä¸ªé¡¶ç‚¹ï¼Œè¿™é‡Œæ˜¯3
 		glDrawArrays(GL_TRIANGLES, 0, 3);
 
 		glfwSwapBuffers(window);

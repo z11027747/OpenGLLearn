@@ -135,7 +135,9 @@
   <ItemGroup>
     <ClCompile Include="..\3rd\src\glad.c" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="_3_CreateRectangle.cpp" />
+    <ClCompile Include="_3_CreateRectangle.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="_1_CreateWindow.cpp" />
     <ClCompile Include="_2_CreateTriangle.cpp" />
   </ItemGroup>
