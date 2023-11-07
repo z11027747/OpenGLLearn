@@ -226,11 +226,11 @@ static void _2_CreateTriangle()
 	//这使其具有很强的灵活性的同时，它还的确意味着我们必须手动指定输入数据的哪一个部分对应顶点着色器的哪一个顶点属性
 
 	//使用glVertexAttribPointer函数告诉OpenGL该如何解析顶点数据（应用到逐个顶点属性上）
-	//	参数1：要配置的顶点属性				对应=>layout(location = 0)
-	//	参数2：顶点属性大小					vec3是三个值，所以是3
-	//	参数3：指定数据类型					GL_FLOAT(GLSL中vec*都是由浮点数值组成的)
-	//	参数4：数据是否标准化				如果是True，所有数据都会被映射到0（对于有符号型signed数据是-1）到1之间
-	//	参数5：连续的顶点属性组之间的间隔	由于下个组位置数据在3个float之后，我们把步长设置为3 * sizeof(float)
+	//	参数1：要配置的顶点属性						对应=>layout(location = 0)
+	//	参数2：顶点属性大小							vec3是三个值，所以是3
+	//	参数3：指定数据类型							GL_FLOAT(GLSL中vec*都是由浮点数值组成的)
+	//	参数4：数据是否标准化						如果是True，所有数据都会被映射到0（对于有符号型signed数据是-1）到1之间
+	//	参数5：步长（连续的顶点属性组之间的间隔）	由于下个组位置数据在3个float之后，我们把步长设置为3 * sizeof(float)
 	//	参数6：偏移量(Offset)
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 
