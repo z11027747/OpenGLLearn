@@ -123,3 +123,14 @@ void Shader::setF3(const std::string& name, float v1, float v2, float v3) const
 	auto location = glGetUniformLocation(ID, name.c_str());
 	glUniform3f(location, v1, v2, v3);
 }
+
+void Shader::setM4(const std::string& name, const float* value) const
+{
+	auto location = glGetUniformLocation(ID, name.c_str());
+	//设置矩阵值
+	//	参数1：location
+	//	参数2：几个矩阵
+	//	参数3：是否转置
+	//	参数4：矩阵数据，要求指针
+	glUniformMatrix4fv(location, 1, GL_FALSE, value);
+}

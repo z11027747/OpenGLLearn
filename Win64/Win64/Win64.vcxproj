@@ -134,6 +134,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\3rd\src\glad.c" />
+    <ClCompile Include="glm_test.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="stb_image.cpp" />
@@ -144,6 +145,7 @@
     <ClCompile Include="_2_CreateTriangle.cpp" />
     <ClCompile Include="_4_Shader.cpp" />
     <ClCompile Include="_5_Texture.cpp" />
+    <ClCompile Include="_6_Matrix.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Shader.h" />
@@ -153,6 +155,8 @@
     <None Include="Shader\_4_test.vs" />
     <None Include="Shader\_5_texture.fs" />
     <None Include="Shader\_5_texture.vs" />
+    <None Include="Shader\_6_matrix.fs" />
+    <None Include="Shader\_6_matrix.vs" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="icon2.png" />
