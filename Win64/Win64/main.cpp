@@ -5,7 +5,8 @@
 //#include "_3_CreateRectangle.cpp"
 //#include "_4_Shader.cpp"_5_Texture
 //#include "_5_Texture.cpp"
-#include "_6_Matrix.cpp"
+//#include "_6_Matrix.cpp"
+#include "_7_3D.cpp"
 //#include "glm_test.cpp"
 
 using namespace std;
@@ -19,9 +20,10 @@ int main()
 	//_3_CreateRectangle();
 	//_4_Shader();
 	//_5_Texture();
-	_6_Matrix();  
+	//_6_Matrix();
+	_7_3D();  
 
-	//glm_test();      
+	//glm_test();
 
 	return 0;
 }

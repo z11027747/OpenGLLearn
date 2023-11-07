@@ -95,7 +95,7 @@ void Shader::del()
 	glDeleteProgram(ID);
 }
 
-void Shader::setB(const std::string& name, bool v1) const
+void Shader::setB(const std::string &name, bool v1) const
 {
 	//glGetUniformLocation 查询函数提供着色器程序和uniform的名字
 	//	如果返回-1 则代表没找到
@@ -106,25 +106,25 @@ void Shader::setB(const std::string& name, bool v1) const
 	glUniform1i(location, (int)v1);
 }
 
-void Shader::setI(const std::string& name, int v1) const
+void Shader::setI(const std::string &name, int v1) const
 {
 	auto location = glGetUniformLocation(ID, name.c_str());
 	glUniform1i(location, v1);
 }
 
-void Shader::setF(const std::string& name, float v1) const
+void Shader::setF(const std::string &name, float v1) const
 {
 	auto location = glGetUniformLocation(ID, name.c_str());
 	glUniform1f(location, v1);
 }
 
-void Shader::setF3(const std::string& name, float v1, float v2, float v3) const
+void Shader::setF3(const std::string &name, float v1, float v2, float v3) const
 {
 	auto location = glGetUniformLocation(ID, name.c_str());
 	glUniform3f(location, v1, v2, v3);
 }
 
-void Shader::setM4(const std::string& name, const float* value) const
+void Shader::setM4(const std::string &name, const float* value) const
 {
 	auto location = glGetUniformLocation(ID, name.c_str());
 	//设置矩阵值
@@ -133,4 +133,10 @@ void Shader::setM4(const std::string& name, const float* value) const
 	//	参数3：是否转置
 	//	参数4：矩阵数据，要求指针
 	glUniformMatrix4fv(location, 1, GL_FALSE, value);
+}
+
+void Shader::setM4(const std::string &name, const glm::mat4 &m4) const
+{
+	auto location = glGetUniformLocation(ID, name.c_str());
+	glUniformMatrix4fv(location, 1, GL_FALSE, &m4[0][0]);
 }

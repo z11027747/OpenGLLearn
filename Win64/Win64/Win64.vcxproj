@@ -71,8 +71,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>D:\G\OpenGLLearn\Win64\3rd\include;$(IncludePath)</IncludePath>
-    <ReferencePath>D:\G\OpenGLLearn\Win64\3rd\lib;$(ReferencePath)</ReferencePath>
+    <IncludePath>..\3rd\include;$(IncludePath)</IncludePath>
+    <ReferencePath>..\3rd\lib;$(ReferencePath)</ReferencePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -113,7 +113,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>D:\G\OpenGLLearn\Win64\3rd\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\3rd\lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -146,6 +146,7 @@
     <ClCompile Include="_4_Shader.cpp" />
     <ClCompile Include="_5_Texture.cpp" />
     <ClCompile Include="_6_Matrix.cpp" />
+    <ClCompile Include="_7_3D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Shader.h" />
@@ -157,6 +158,8 @@
     <None Include="Shader\_5_texture.vs" />
     <None Include="Shader\_6_matrix.fs" />
     <None Include="Shader\_6_matrix.vs" />
+    <None Include="Shader\_7_3d.fs" />
+    <None Include="Shader\_7_3d.vs" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="icon2.png" />

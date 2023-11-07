@@ -1,4 +1,4 @@
-﻿#include <glm/glm.hpp>
+﻿#include <glm/glm.hpp> //引入相关头文件
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
@@ -31,6 +31,14 @@ static void glm_test() {
 	//缩放 0.5倍
 	//注意：如果有旋转，应该先乘旋转矩阵，否则位移也会受到影响
 
+	//平移 1,1,0
+	//0.5 0.0 0.0 1.0 * 1 = 1.5
+	//0.0 0.5 0.0 1.0 * 0 = 1
+	//0.0 0.0 0.5 0.0 * 0 = 0
+	//0.0 0.0 0.0 1.0 * 1 = 1
+	trans = translate(trans, vec3(1.0f, 1.0f, 0.0f));
+
+	//旋转
 	//0.5 0.0 0.0 0.0 * 1 = 0.5
 	//0.0 0.5 0.0 0.0 * 0 = 0
 	//0.0 0.0 0.5 0.0 * 0 = 0
@@ -38,18 +46,10 @@ static void glm_test() {
 	trans = scale(trans, vec3(0.5f, 0.5f, 0.5f));
 
 	//旋转 90度
-	trans = rotate(trans, radians(90.0f), vec3(0.0f, 0.0f, 1.0f));
-
-	//平移 1,1,0
-
-	//0.5 0.0 0.0 1.0 * 1 = 1.5
-	//0.0 0.5 0.0 1.0 * 0 = 1
-	//0.0 0.0 0.5 0.0 * 0 = 0
-	//0.0 0.0 0.0 1.0 * 1 = 1
-	trans = translate(trans, vec3(1.0f, 1.0f, 0.0f));
+	//trans = rotate(trans, radians(90.0f), vec3(0.0f, 0.0f, 1.0f));
 
 	vec4 vec(1.0f, 0.0f, 0.0f, 1.0f); //w是1是坐标，代表位移是有效的
 
-	vec = vec * trans;
+	vec = trans * vec;
 	std::cout << vec.x << "," << vec.y << "," << vec.z << std::endl;
 }

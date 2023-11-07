@@ -23,7 +23,7 @@ static void _6_Matrix()
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	GLFWwindow* window = glfwCreateWindow(800, 600, "LearnOpenGL", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(800, 600, "OpenGLWindow", NULL, NULL);
 	if (window == NULL)
 	{
 		cout << "GLFW Window Create Failed !!!" << endl;
@@ -122,13 +122,12 @@ static void _6_Matrix()
 
 	glBindTexture(GL_TEXTURE_2D, NULL);
 
-
 	while (!glfwWindowShouldClose(window))
 	{
 		processInput(window);
 
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT );
 
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, texture1);

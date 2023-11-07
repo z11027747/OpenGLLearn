@@ -2,6 +2,7 @@
 #define SHADER
 
 #include <glad/glad.h> // 包含glad来获取所有的必须OpenGL头文件
+#include <glm/glm.hpp>
 
 #include <string>
 #include <fstream>
@@ -24,10 +25,11 @@ public:
 
 	//uniform工具函数
 	void setB(const std::string &name, bool v1) const;
-	void setI(const std::string& name, int v1) const;
-	void setF(const std::string& name, float v1) const;
-	void setF3(const std::string& name, float v1, float v2, float v3) const;
-	void setM4(const std::string& name, const float* value) const;
+	void setI(const std::string &name, int v1) const;
+	void setF(const std::string &name, float v1) const;
+	void setF3(const std::string &name, float v1, float v2, float v3) const;
+	void setM4(const std::string &name, const float* value) const;
+	void setM4(const std::string &name, const glm::mat4 &m4) const;
 };
 
 #endif SHADER

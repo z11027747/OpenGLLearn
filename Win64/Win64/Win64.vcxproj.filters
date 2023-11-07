@@ -48,6 +48,9 @@
     <ClCompile Include="_6_Matrix.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="_7_3D.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Shader.h">
@@ -61,6 +64,8 @@
     <None Include="Shader\_5_texture.vs" />
     <None Include="Shader\_6_matrix.fs" />
     <None Include="Shader\_6_matrix.vs" />
+    <None Include="Shader\_7_3d.fs" />
+    <None Include="Shader\_7_3d.vs" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="icon2.png">
