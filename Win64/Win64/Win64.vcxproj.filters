@@ -36,6 +36,12 @@
     <ClCompile Include="Shader.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="stb_image.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="_5_Texture.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Shader.h">
@@ -43,7 +49,17 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Shader\test.vs" />
-    <None Include="Shader\test.fs" />
+    <None Include="Shader\_4_test.fs" />
+    <None Include="Shader\_4_test.vs" />
+    <None Include="Shader\_5_texture.fs" />
+    <None Include="Shader\_5_texture.vs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon2.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="logo.png">
+      <Filter>资源文件</Filter>
+    </Image>
   </ItemGroup>
 </Project>

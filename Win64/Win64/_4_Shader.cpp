@@ -37,7 +37,7 @@ static void _4_Shader()
 
 	// ========================= 
 
-	Shader testShader("test.vs", "test.fs");
+	Shader testShader("_4_test");
 
 	// ========================= 
 

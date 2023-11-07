@@ -1,6 +1,6 @@
 ﻿#include "Shader.h"
 
-Shader::Shader(const char* vertexPath, const char* fragmentPath)
+Shader::Shader(const char* path)
 {
 	//1.从文件路径中获取着色器
 
@@ -16,8 +16,8 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath)
 	try
 	{
 		// 打开文件
-		vShaderFile.open("Shader/"+ std::string(vertexPath));
-		fShaderFile.open("Shader/" + std::string(fragmentPath));
+		vShaderFile.open("Shader/"+ std::string(path) + ".vs");
+		fShaderFile.open("Shader/" + std::string(path) + ".fs");
 		std::stringstream vShaderStream, fShaderStream;
 		// 读取文件的缓冲内容到数据流中
 		vShaderStream << vShaderFile.rdbuf();
@@ -104,6 +104,12 @@ void Shader::setB(const std::string& name, bool v1) const
 	//glUniform1i设置uniform值（1i就是1个int）
 	//  更新一个uniform之前必须先use，在当前激活的着色器程序中设置uniform的
 	glUniform1i(location, (int)v1);
+}
+
+void Shader::setI(const std::string& name, int v1) const
+{
+	auto location = glGetUniformLocation(ID, name.c_str());
+	glUniform1i(location, v1);
 }
 
 void Shader::setF(const std::string& name, float v1) const
