@@ -98,6 +98,9 @@ static void _5_Texture()
 	//	参数3：值
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+	//GL_TEXTURE_MIN_FILTER 和 GL_TEXTURE_MAG_FILTER 代表纹理被放大或者缩小时的采样方式
+	//	一般被缩小时，都会使用 多级渐远纹理Mipmap，否则会出现细节丢失和内存浪费
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
@@ -116,14 +119,11 @@ static void _5_Texture()
 	//		就取最靠近的那个像素颜色
 	//	2.GL_LINEAR（也叫线性过滤，(Bi)linear Filtering）它会基于纹理坐标附近的纹理像素，计算出一个插值，近似出这些纹理像素之间的颜色。
 	//		附近的4像素颜色混合值
-
-	//GL_TEXTURE_MIN_FILTER 和 GL_TEXTURE_MAG_FILTER 代表纹理被放大或者缩小时的采样方式
-	//	一般被缩小时，都会使用 多级渐远纹理Mipmap，否则会出现细节丢失和内存浪费
 	
 	//多级渐远纹理Mipmap：它简单来说就是一系列的纹理图像，后一个纹理图像是前一个的二分之一
 	//	OpenGL会使用不同的多级渐远纹理，即最适合物体的距离的那个
 
-	//使用stb_image加载图片数据
+	//使用stbi_load加载图片数据
 	//	返回图像的宽度、高度、通道个数
 	int width, height, nrChannels;
 	unsigned char* data = stbi_load("icon2.png", &width, &height, &nrChannels, 0);
