@@ -14,6 +14,7 @@ using namespace glm;
 
 static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 static void processInput(GLFWwindow* window);
+
 static void cursor_pos_callback(GLFWwindow* window, double xpos, double ypos);
 static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
 static void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
@@ -179,10 +180,6 @@ static void _8_Camera()
 		glm::vec3(-1.3f,  1.0f, -1.5f)
 	};
 
-	//OpenGL本身没有摄像机(Camera)的概念
-	//	可以通过把场景中的所有物体往相反方向移动的方式来模拟出摄像机
-	//	产生一种我们在移动的感觉，而不是场景在移动。
-
 	glEnable(GL_DEPTH_TEST);
 
 	while (!glfwWindowShouldClose(window))
@@ -201,10 +198,6 @@ static void _8_Camera()
 
 		float time = (float)glfwGetTime();
 
-		//记录时间差，用来算平均速度的
-		//	有些人可能会比其他人每秒绘制更多帧
-		//	deltaTime很大，就意味着上一帧的渲染花费了更多时间，所以这一帧的速度需要变得更高来平衡渲染所花去的时间
-		//	保证摄像机的速度都会相应平衡，这样每个用户的体验就都一样了
 		deltaTime = time - lastFrame;
 		lastFrame = time;
 
@@ -267,7 +260,7 @@ static void processInput(GLFWwindow* window)
 
 static bool enable_rotate;
 
-//使用鼠标点击，负责控制是否启用旋转
+//鼠标点击
 static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 {
 	std::cout << button << "," << action << endl;
@@ -278,11 +271,10 @@ static void mouse_button_callback(GLFWwindow* window, int button, int action, in
 		enable_rotate = false;
 }
 
-//默认是屏幕的中心
-static float lastX = SCR_WIDTH / 2.0f;
-static float lastY = SCR_HEIGHT / 2.0f;
+static float lastX;
+static float lastY;
 
-//使用鼠标位置，负责控制相机旋转
+//鼠标位置
 static void cursor_pos_callback(GLFWwindow* window, double xpos, double ypos)
 {
 	if (!enable_rotate)
@@ -300,7 +292,7 @@ static void cursor_pos_callback(GLFWwindow* window, double xpos, double ypos)
 	camera.ProcessMouseMovement(xoffset, yoffset, true);
 }
 
-//使用鼠标滚轮，负责相机缩放 FOV
+//鼠标滚轮
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
 	camera.ProcessMouseScroll((float)yoffset);

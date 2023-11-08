@@ -20,6 +20,9 @@ const float SPEED = 2.5f;
 const float SENSITIVITY = 0.1f;
 const float ZOOM = 45.0f;
 
+//OpenGL本身没有摄像机(Camera)的概念
+//	可以通过把场景中的所有物体往相反方向移动的方式来模拟出摄像机
+//	产生一种我们在移动的感觉，而不是场景在移动。
 class Camera
 {
 public:
@@ -55,20 +58,20 @@ public:
 	//获取相机的观察矩阵
 	glm::mat4 GetViewMatrix()
 	{
-		//定义相机位置
+		//相机位置
 		//	轴是从屏幕指向你的，如果希望摄像机向后移动，就沿着z轴的正方向移动。
 		//glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
 
-		//定义相机z方向
+		//相机z方向
 		//	注意：是指向屏幕外面的反方向
 		//glm::vec3 cameraTarget = glm::vec3(0.0f, 0.0f, 0.0f);
 		//glm::vec3 cameraDirection = glm::normalize(cameraPos - cameraTarget);
 
-		//定义相机x方向（只需考虑xz平面，取相对于xz平面的up向量叉乘）
+		//相机x方向（只需考虑xz平面，取相对于xz平面的up向量叉乘）
 		//glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
 		//glm::vec3 cameraRight = glm::normalize(glm::cross(up, cameraDirection));
 		 
-		//定义相机y方向
+		//相机y方向
 		//glm::vec3 cameraUp = glm::cross(cameraDirection, cameraRight);
 
 		//使用3个相互垂直的轴定义了一个坐标空间，可以用这3个轴外加一个平移向量来创建一个矩阵
@@ -105,6 +108,11 @@ public:
 	//键盘WASD，负责控制相机位置移动
 	void ProcessKeyboard(Camera_Movement direction, float deltaTime)
 	{
+		//deltaTime时间差，用来算平均速度的
+		//	有些人可能会比其他人每秒绘制更多帧
+		//	deltaTime很大，就意味着上一帧的渲染花费了更多时间，所以这一帧的速度需要变得更高来平衡渲染所花去的时间
+		//	保证摄像机的速度都会相应平衡，这样每个用户的体验就都一样了
+
 		float velocity = MovementSpeed * deltaTime;
 		if (direction == FORWARD)
 			Position += Front * velocity;
