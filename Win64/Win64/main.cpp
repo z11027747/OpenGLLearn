@@ -25,7 +25,7 @@ int main()
 	//_5_Texture();
 	//_6_Matrix();
 	//_7_3D();  
-	_8_Camera();  
+	_8_Camera();    
 
 	//glm_test();
 

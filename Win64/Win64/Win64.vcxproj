@@ -134,7 +134,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\3rd\src\glad.c" />
-    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="glm_test.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Shader.cpp" />
