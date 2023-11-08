@@ -147,6 +147,7 @@
     <ClCompile Include="_5_Texture.cpp" />
     <ClCompile Include="_6_Matrix.cpp" />
     <ClCompile Include="_7_3D.cpp" />
+    <ClCompile Include="_8_Camera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Shader.h" />
@@ -160,6 +161,8 @@
     <None Include="Shader\_6_matrix.vs" />
     <None Include="Shader\_7_3d.fs" />
     <None Include="Shader\_7_3d.vs" />
+    <None Include="Shader\_8_Camera.fs" />
+    <None Include="Shader\_8_Camera.vs" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="icon2.png" />

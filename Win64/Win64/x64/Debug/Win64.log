@@ -1,4 +1,18 @@
-﻿  _7_3D.cpp
+﻿  _8_Camera.cpp
+D:\G\OpenGLLearn\Win64\Win64\_8_Camera.cpp(342,11): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+D:\G\OpenGLLearn\Win64\Win64\_8_Camera.cpp(343,11): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+D:\G\OpenGLLearn\Win64\Win64\_8_Camera.cpp(375,16): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+D:\G\OpenGLLearn\Win64\Win64\_8_Camera.cpp(376,16): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+D:\G\OpenGLLearn\Win64\Win64\_8_Camera.cpp(377,10): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+D:\G\OpenGLLearn\Win64\Win64\_8_Camera.cpp(378,10): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+D:\G\OpenGLLearn\Win64\Win64\_8_Camera.cpp(404,10): warning C4244: “-=”: 从“double”转换到“float”，可能丢失数据
   main.cpp
+D:\G\OpenGLLearn\Win64\Win64\_8_Camera.cpp(342,11): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+D:\G\OpenGLLearn\Win64\Win64\_8_Camera.cpp(343,11): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+D:\G\OpenGLLearn\Win64\Win64\_8_Camera.cpp(375,16): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+D:\G\OpenGLLearn\Win64\Win64\_8_Camera.cpp(376,16): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+D:\G\OpenGLLearn\Win64\Win64\_8_Camera.cpp(377,10): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+D:\G\OpenGLLearn\Win64\Win64\_8_Camera.cpp(378,10): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+D:\G\OpenGLLearn\Win64\Win64\_8_Camera.cpp(404,10): warning C4244: “-=”: 从“double”转换到“float”，可能丢失数据
   正在生成代码...
-  Win64.vcxproj -> E:\OpenGLLearn\Win64\x64\Debug\Win64.exe
+  Win64.vcxproj -> D:\G\OpenGLLearn\Win64\x64\Debug\Win64.exe

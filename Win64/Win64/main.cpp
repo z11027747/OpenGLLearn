@@ -6,7 +6,10 @@
 //#include "_4_Shader.cpp"_5_Texture
 //#include "_5_Texture.cpp"
 //#include "_6_Matrix.cpp"
-#include "_7_3D.cpp"
+//#include "_7_3D.cpp"
+#include "_8_Camera.cpp"
+
+
 //#include "glm_test.cpp"
 
 using namespace std;
@@ -21,7 +24,8 @@ int main()
 	//_4_Shader();
 	//_5_Texture();
 	//_6_Matrix();
-	_7_3D();  
+	//_7_3D();  
+	_8_Camera();  
 
 	//glm_test();
 
