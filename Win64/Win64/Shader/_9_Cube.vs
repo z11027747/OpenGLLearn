@@ -2,9 +2,11 @@
 
 layout (location=0) in vec3 positionOS;
 layout (location=1) in vec3 normalOS;
+layout (location=2) in vec2 texcoord;
 
 out vec3 positionWS;
 out vec3 normalWS;
+out vec2 uv;
 
 uniform mat4 model;
 uniform mat4 view;
@@ -33,4 +35,6 @@ void main()
 
 	//对于一般模型 没有缩放的话 直接乘就行了
 	normalWS = mat3(model) * normalOS;
+
+	uv = texcoord;
 }

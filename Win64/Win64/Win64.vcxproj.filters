@@ -51,9 +51,18 @@
     <ClCompile Include="_7_3D.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="_8_Camera.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="_9_Light.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Shader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -66,12 +75,22 @@
     <None Include="Shader\_6_matrix.vs" />
     <None Include="Shader\_7_3d.fs" />
     <None Include="Shader\_7_3d.vs" />
+    <None Include="Shader\_9_Cube.fs" />
+    <None Include="Shader\_9_Cube.vs" />
+    <None Include="Shader\_9_Lighting.fs" />
+    <None Include="Shader\_9_Lighting.vs" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="icon2.png">
       <Filter>资源文件</Filter>
     </Image>
     <Image Include="logo.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="container2_specular.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="container2.png">
       <Filter>资源文件</Filter>
     </Image>
   </ItemGroup>

@@ -27,7 +27,7 @@ int main()
 	//_6_Matrix();
 	//_7_3D();
 	//_8_Camera();  
-	_9_Light();    
+	_9_Light(); 
 
 
 	//glm_test();

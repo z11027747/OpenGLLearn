@@ -191,6 +191,8 @@
     <None Include="Shader\_9_Lighting.vs" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="container2.png" />
+    <Image Include="container2_specular.png" />
     <Image Include="icon2.png" />
     <Image Include="logo.png" />
   </ItemGroup>
