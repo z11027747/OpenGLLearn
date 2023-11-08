@@ -124,6 +124,12 @@ void Shader::setF3(const std::string &name, float v1, float v2, float v3) const
 	glUniform3f(location, v1, v2, v3);
 }
 
+void Shader::setF3(const std::string& name, const glm::vec3 &v3) const
+{
+	auto location = glGetUniformLocation(ID, name.c_str());
+	glUniform3f(location, v3.x, v3.y, v3.z);
+}
+
 void Shader::setM4(const std::string &name, const float* value) const
 {
 	auto location = glGetUniformLocation(ID, name.c_str());

@@ -27,7 +27,8 @@ public:
 	void setB(const std::string &name, bool v1) const;
 	void setI(const std::string &name, int v1) const;
 	void setF(const std::string &name, float v1) const;
-	void setF3(const std::string &name, float v1, float v2, float v3) const;
+	void setF3(const std::string &name, float v1, float v2, float v3) const; 
+	void setF3(const std::string& name, const glm::vec3& v3) const;
 	void setM4(const std::string &name, const float* value) const;
 	void setM4(const std::string &name, const glm::mat4 &m4) const;
 };

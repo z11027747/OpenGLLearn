@@ -10,7 +10,9 @@ enum Camera_Movement {
 	FORWARD,
 	BACKWARD,
 	LEFT,
-	RIGHT
+	RIGHT,
+	UP,
+	DOWN
 };
 
 //默认值
@@ -85,24 +87,24 @@ public:
 		//
 		//	其中R是右向量，U是上向量，D是方向向量，P是摄像机位置向量
 
-		glm::mat4 rotation = glm::mat4(1.0f);
-		rotation[0][0] = Right.x;	rotation[1][0] = Right.y;	rotation[2][0] = Right.z;
-		rotation[0][1] = Up.x;		rotation[1][1] = Up.y;		rotation[2][1] = Up.z;
-		rotation[0][2] = -Front.x;	rotation[1][2] = -Front.y;	rotation[2][2] = -Front.z;
+		//glm::mat4 rotation = glm::mat4(1.0f);
+		//rotation[0][0] = Right.x;	rotation[1][0] = Right.y;	rotation[2][0] = Right.z;
+		//rotation[0][1] = Up.x;		rotation[1][1] = Up.y;		rotation[2][1] = Up.z;
+		//rotation[0][2] = -Front.x;	rotation[1][2] = -Front.y;	rotation[2][2] = -Front.z;
 
-		glm::mat4 translation = glm::mat4(1.0f);
-		translation[3][0] = -Position.x;
-		translation[3][1] = -Position.y;
-		translation[3][2] = -Position.z;
+		//glm::mat4 translation = glm::mat4(1.0f);
+		//translation[3][0] = -Position.x;
+		//translation[3][1] = -Position.y;
+		//translation[3][2] = -Position.z;
 
-		return rotation * translation;
+		//return rotation * translation;
 
 		//glm 提供了lookAt接口，返回LookAt矩阵
 		//	参数1：相机位置
 		//	参数2：目标位置
 		//	参数3：世界空间中向上的向量
 
-		//return glm::lookAt(Position, Position + Front, Up);
+		return glm::lookAt(Position, Position + Front, Up);
 	}
 
 	//键盘WASD，负责控制相机位置移动
@@ -122,6 +124,10 @@ public:
 			Position -= Right * velocity;
 		if (direction == RIGHT)
 			Position += Right * velocity;
+		if (direction == UP)
+			Position += Up * velocity;
+		if (direction == DOWN)
+			Position -= Up * velocity;
 	}
 
 	//使用鼠标位置，负责控制相机旋转

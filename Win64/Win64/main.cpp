@@ -7,7 +7,8 @@
 //#include "_5_Texture.cpp"
 //#include "_6_Matrix.cpp"
 //#include "_7_3D.cpp"
-#include "_8_Camera.cpp"
+//#include "_8_Camera.cpp"
+#include "_9_Light.cpp"
 
 
 //#include "glm_test.cpp"
@@ -24,8 +25,10 @@ int main()
 	//_4_Shader();
 	//_5_Texture();
 	//_6_Matrix();
-	//_7_3D();  
-	_8_Camera();    
+	//_7_3D();
+	//_8_Camera();  
+	_9_Light();    
+
 
 	//glm_test();
 
