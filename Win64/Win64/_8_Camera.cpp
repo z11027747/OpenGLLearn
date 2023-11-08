@@ -7,6 +7,7 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include "Shader.h"
+#include "Camera.h"
 
 using namespace std;
 using namespace glm;
@@ -21,12 +22,11 @@ static void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
 
-//相机位置，控制移动
-static glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
-static glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
-static glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
-
-static float fov = 45.0f; // 视野范围
+//自定义相机
+static Camera camera(
+	glm::vec3(0.0f, 0.0f, 3.0f), //pos
+	glm::vec3(0.0f, 1.0f, 0.0f)	 //up
+);
 
 //时间差
 static float deltaTime = 0.0f; // 当前帧与上一帧的时间差
@@ -180,36 +180,8 @@ static void _8_Camera()
 	};
 
 	//OpenGL本身没有摄像机(Camera)的概念
-	//可以通过把场景中的所有物体往相反方向移动的方式来模拟出摄像机，产生一种我们在移动的感觉，而不是场景在移动。
-
-	//要定义一个摄像机，我们需要它在世界空间中的位置、观察的方向、一个指向它右侧的向量以及一个指向它上方的向量。
-
-	//定义相机位置
-	//	轴是从屏幕指向你的，如果希望摄像机向后移动，就沿着z轴的正方向移动。
-	//glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
-
-	//定义相机z方向
-	//	注意：是指向屏幕外面的反方向
-	//glm::vec3 cameraTarget = glm::vec3(0.0f, 0.0f, 0.0f);
-	//glm::vec3 cameraDirection = glm::normalize(cameraPos - cameraTarget);
-
-	//定义相机x方向（只需考虑xz平面，取相对于xz平面的up向量叉乘）
-	//glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
-	//glm::vec3 cameraRight = glm::normalize(glm::cross(up, cameraDirection));
-
-	//定义相机y方向
-	//glm::vec3 cameraUp = glm::cross(cameraDirection, cameraRight);
-
-	//使用3个相互垂直的轴定义了一个坐标空间，可以用这3个轴外加一个平移向量来创建一个矩阵
-	//	用这个矩阵乘以任何向量来将其变换到那个坐标空间。这就是LookAt矩阵
-	// 
-	// LookAt 矩阵
-	//	[ Rx Ry Rz 0 ] * [ 1 0 0 -Px ]
-	//	[ Ux Uy Uz 0 ] * [ 0 1 0 -Py ]
-	//	[ Dx Dy Dz 0 ] * [ 0 0 1 -Pz ]
-	//	[ 0  0  0  1 ] * [ 0 0 0  1  ]
-	//
-	//	其中R是右向量，U是上向量，D是方向向量，P是摄像机位置向量
+	//	可以通过把场景中的所有物体往相反方向移动的方式来模拟出摄像机
+	//	产生一种我们在移动的感觉，而不是场景在移动。
 
 	glEnable(GL_DEPTH_TEST);
 
@@ -236,29 +208,10 @@ static void _8_Camera()
 		deltaTime = time - lastFrame;
 		lastFrame = time;
 
-		//让相机位置在xz轴10半径的圆旋转
-		//float radius = 10.0f;
-		//float camX = sin(time) * radius;
-		//float camZ = cos(time) * radius;
-
-		//glm 提供了lookAt接口，返回LookAt矩阵
-		//	参数1：相机位置
-		//	参数2：目标位置
-		//	参数3：世界空间中向上的向量
-		//glm::mat4 view = glm::mat4(1.0f);
-		//view = glm::lookAt(
-		//	glm::vec3(glm::vec3(camX, 0.0, camZ)),
-		//	glm::vec3(0.0f, 0.0f, 0.0f),
-		//	glm::vec3(0.0f, 1.0f, 0.0f));
-
-		//自定义Camera位置
-		glm::mat4 view = glm::mat4(1.0f);
-		view = glm::lookAt(
-			glm::vec3(cameraPos),
-			glm::vec3(cameraPos + cameraFront),
-			glm::vec3(cameraUp));
-
+		glm::mat4 view = camera.GetViewMatrix();
 		testShader.setM4("view", glm::value_ptr(view));
+
+		float fov = camera.Zoom;
 
 		glm::mat4 projection = glm::mat4(1.0f);
 		projection = glm::perspective(glm::radians(fov), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
@@ -303,13 +256,13 @@ static void processInput(GLFWwindow* window)
 	//键盘WASD，负责控制相机位置移动
 	float cameraSpeed = 2.5f * deltaTime;
 	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-		cameraPos += cameraSpeed * cameraFront;
+		camera.ProcessKeyboard(Camera_Movement::FORWARD, deltaTime);
 	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-		cameraPos -= cameraSpeed * cameraFront;
+		camera.ProcessKeyboard(Camera_Movement::BACKWARD, deltaTime);
 	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-		cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
+		camera.ProcessKeyboard(Camera_Movement::LEFT, deltaTime);
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-		cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
+		camera.ProcessKeyboard(Camera_Movement::RIGHT, deltaTime);
 }
 
 static bool enable_rotate;
@@ -321,7 +274,6 @@ static void mouse_button_callback(GLFWwindow* window, int button, int action, in
 
 	if (action == GLFW_PRESS)
 		enable_rotate = true;
-
 	if (action == GLFW_RELEASE)
 		enable_rotate = false;
 }
@@ -330,80 +282,26 @@ static void mouse_button_callback(GLFWwindow* window, int button, int action, in
 static float lastX = SCR_WIDTH / 2.0f;
 static float lastY = SCR_HEIGHT / 2.0f;
 
-//俯仰角和偏航角
-static float pitchValue = 0.0f;
-static float yawValue = -90.0f;
-
 //使用鼠标位置，负责控制相机旋转
 static void cursor_pos_callback(GLFWwindow* window, double xpos, double ypos)
 {
 	if (!enable_rotate)
 	{
-		lastX = xpos;
-		lastY = ypos;
+		lastX = (float)xpos;
+		lastY = (float)ypos;
 		return;
 	}
 
-	//欧拉角(Euler Angle)
-	//	俯仰角(Pitch)、偏航角(Yaw)和滚转角(Roll)
-	//	对应 X、Y、Z
+	float xoffset = (float)xpos - lastX;
+	float yoffset = lastY - (float)ypos; // 注意Y是相反的，因为y坐标是从底部往顶部依次增大的
+	lastX = (float)xpos;
+	lastY = (float)ypos;
 
-	//对于摄像机系统，一般只关心俯仰角和偏航角，
-
-	//1.在xz平面上，看向y轴（俯仰角）
-	//	根据俯仰角求出方向向量的坐标
-	//direction.x = cos(glm::radians(pitch));
-	//direction.y = sin(glm::radians(pitch));
-	//direction.z = cos(glm::radians(pitch));
-
-	//2.在xz平面，忽略y轴（偏航角）
-	//	根据偏航角求出方向向量的坐标
-	//direction.x = cos(glm::radians(yaw));
-	//direction.y = 0; 
-	//direction.z = sin(glm::radians(yaw));
-
-	//两个相叠加，就可以根据俯仰角+偏航角求出方向向量
-	//direction.x = cos(glm::radians(pitch)) * cos(glm::radians(yaw));
-	//direction.y = sin(glm::radians(pitch));
-	//direction.z = cos(glm::radians(pitch)) 8 sin(glm::radians(yaw))
-
-	//下面的问题就是：求出俯仰角+偏航角
-	//根据鼠标的输入计算
-	//	水平的移动影响偏航角，竖直的移动影响俯仰角
-	//	储存上一帧鼠标的位置，在当前帧中我们当前计算鼠标位置与上一帧的位置相差多少
-
-	float xoffset = xpos - lastX;
-	float yoffset = lastY - ypos; // 注意Y是相反的，因为y坐标是从底部往顶部依次增大的
-	lastX = xpos;
-	lastY = ypos;
-
-	//鼠标灵敏度
-	float sensitivity = 0.05f;
-	xoffset *= sensitivity;
-	yoffset *= sensitivity;
-
-	pitchValue += yoffset;
-	yawValue += xoffset;
-
-	//限制俯仰角（上下旋转范围）
-	if (pitchValue > 89.0f) pitchValue = 89.0f;
-	if (pitchValue < -89.0f) pitchValue = -89.0f;
-
-	glm::vec3 front;
-	front.x = cos(glm::radians(pitchValue)) * cos(glm::radians(yawValue));
-	front.y = sin(glm::radians(pitchValue));
-	front.z = cos(glm::radians(pitchValue)) * sin(glm::radians(yawValue));
-
-	cameraFront = glm::normalize(front);
+	camera.ProcessMouseMovement(xoffset, yoffset, true);
 }
 
 //使用鼠标滚轮，负责相机缩放 FOV
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
-	if (fov >= 1.0f && fov <= 60.0f)
-		fov -= yoffset;
-
-	//限制FOV范围在，1-45之间
-	if (fov <= 1.0f) fov = 1.0f;
-	if (fov >= 60.0f) fov = 60.0f;
+	camera.ProcessMouseScroll((float)yoffset);
 }
