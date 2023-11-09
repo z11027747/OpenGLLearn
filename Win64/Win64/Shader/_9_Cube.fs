@@ -17,7 +17,6 @@ struct Material {
 
 uniform Material material;
 
-
 //平行光：太阳
 //当一个光源处于很远的地方时，来自光源的每条光线就会近似于互相平行
 //因为所有的光线都是平行的，所以物体与光源的相对位置是不重要的
@@ -34,6 +33,7 @@ uniform DirLight dirLight;
 //计算平行光颜色
 vec3 CalcDirLight(DirLight light)
 {
+    //贴图
     vec3 diffuseCol = texture(material.diffuse, uv).rgb;
     vec3 specularCol = texture(material.specular, uv).rgb;
 
@@ -90,6 +90,7 @@ vec3 CalcPointLight(PointLight light)
                             + light.linear * distance 
                             + light.quadratic * (distance * distance) );
 
+    //贴图
     vec3 diffuseCol = texture(material.diffuse, uv).rgb;
     vec3 specularCol = texture(material.specular, uv).rgb;
 
@@ -106,7 +107,7 @@ vec3 CalcPointLight(PointLight light)
     vec3 halfDir = normalize(viewDir + lightDir);
     vec3 specular = pow(max(0.0, dot(normalDir, halfDir)), material.shininess) * light.specular * specularCol;
 
-    vec3 result = (ambient + diffuse + specular)*attenuation;
+    vec3 result = (ambient + diffuse + specular) * attenuation;
     return result;
 }
 
@@ -138,6 +139,7 @@ vec3 CalcSpotLight(SpotLight light)
     //余弦值越接近1.0，它的角度就越小
     if (theta > light.cutOff)
     {
+        //贴图
         vec3 diffuseCol = texture(material.diffuse, uv).rgb;
         vec3 specularCol = texture(material.specular, uv).rgb;
 
@@ -164,6 +166,7 @@ vec3 CalcSpotLight(SpotLight light)
     }
     else
     {
+        //不在区域内，目前是黑色
         return vec3(0.0);
     }
 }

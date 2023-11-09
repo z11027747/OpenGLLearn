@@ -3,6 +3,7 @@ D:\G\OpenGLLearn\Win64\Win64\glm_test.cpp;D:\G\OpenGLLearn\Win64\Win64\x64\Debug
 D:\G\OpenGLLearn\Win64\Win64\main.cpp;D:\G\OpenGLLearn\Win64\Win64\x64\Debug\main.obj
 D:\G\OpenGLLearn\Win64\Win64\Shader.cpp;D:\G\OpenGLLearn\Win64\Win64\x64\Debug\Shader.obj
 D:\G\OpenGLLearn\Win64\Win64\stb_image.cpp;D:\G\OpenGLLearn\Win64\Win64\x64\Debug\stb_image.obj
+D:\G\OpenGLLearn\Win64\Win64\_10_Model.cpp;D:\G\OpenGLLearn\Win64\Win64\x64\Debug\_10_Model.obj
 D:\G\OpenGLLearn\Win64\Win64\_3_CreateRectangle.cpp;D:\G\OpenGLLearn\Win64\Win64\x64\Debug\_3_CreateRectangle.obj
 D:\G\OpenGLLearn\Win64\Win64\_1_CreateWindow.cpp;D:\G\OpenGLLearn\Win64\Win64\x64\Debug\_1_CreateWindow.obj
 D:\G\OpenGLLearn\Win64\Win64\_2_CreateTriangle.cpp;D:\G\OpenGLLearn\Win64\Win64\x64\Debug\_2_CreateTriangle.obj
@@ -12,3 +13,5 @@ D:\G\OpenGLLearn\Win64\Win64\_6_Matrix.cpp;D:\G\OpenGLLearn\Win64\Win64\x64\Debu
 D:\G\OpenGLLearn\Win64\Win64\_7_3D.cpp;D:\G\OpenGLLearn\Win64\Win64\x64\Debug\_7_3D.obj
 D:\G\OpenGLLearn\Win64\Win64\_8_Camera.cpp;D:\G\OpenGLLearn\Win64\Win64\x64\Debug\_8_Camera.obj
 D:\G\OpenGLLearn\Win64\Win64\_9_Light.cpp;D:\G\OpenGLLearn\Win64\Win64\x64\Debug\_9_Light.obj
+D:\S\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\modules\std.ixx;D:\G\OpenGLLearn\Win64\Win64\x64\Debug\std.ixx.obj
+D:\S\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\modules\std.compat.ixx;D:\G\OpenGLLearn\Win64\Win64\x64\Debug\std.compat.ixx.obj

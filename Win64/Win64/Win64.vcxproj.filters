@@ -57,12 +57,21 @@
     <ClCompile Include="_9_Light.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="_10_Model.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Shader.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -79,6 +88,8 @@
     <None Include="Shader\_9_Cube.vs" />
     <None Include="Shader\_9_Lighting.fs" />
     <None Include="Shader\_9_Lighting.vs" />
+    <None Include="Shader\_10_Model.fs" />
+    <None Include="Shader\_10_Model.vs" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="icon2.png">

@@ -1,10 +1,11 @@
 ﻿#include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include <iostream>
-#include <cmath>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+
+#include <iostream>
+#include <cmath>
 
 #include "Shader.h"
 #include "Camera.h"
@@ -146,8 +147,6 @@ static void _9_Light()
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
 
-	glEnable(GL_DEPTH_TEST);
-
 	unsigned int diffuseMap = loadTexture("container2.png");
 	unsigned int specularMap = loadTexture("container2_specular.png");
 
@@ -190,6 +189,8 @@ static void _9_Light()
 
 	//聚光灯颜色
 	glm::vec3 spotLightCol(0.8f);
+
+	glEnable(GL_DEPTH_TEST);
 
 	while (!glfwWindowShouldClose(window))
 	{

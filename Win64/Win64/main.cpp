@@ -8,8 +8,8 @@
 //#include "_6_Matrix.cpp"
 //#include "_7_3D.cpp"
 //#include "_8_Camera.cpp"
-#include "_9_Light.cpp"
-
+//#include "_9_Light.cpp"
+#include "_10_Model.cpp"
 
 //#include "glm_test.cpp"
 
@@ -27,7 +27,8 @@ int main()
 	//_6_Matrix();
 	//_7_3D();
 	//_8_Camera();  
-	_9_Light(); 
+	//_9_Light(); 
+	_10_Model(); 
 
 
 	//glm_test();
