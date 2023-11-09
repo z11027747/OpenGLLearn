@@ -116,6 +116,10 @@ static void _10_Model()
 
 	glEnable(GL_DEPTH_TEST);
 
+	//遮挡剔除
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_BACK);
+
 	while (!glfwWindowShouldClose(window))
 	{
 		processInput(window);
