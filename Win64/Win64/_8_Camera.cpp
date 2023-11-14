@@ -293,7 +293,7 @@ static void cursor_pos_callback(GLFWwindow* window, double xpos, double ypos)
 }
 
 //鼠标滚轮
-void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+static void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
 	camera.ProcessMouseScroll((float)yoffset);
 }
